@@ -28,7 +28,6 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
-		<spring-security.version>6.3.1</spring-security.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -60,9 +59,8 @@
 		</dependency>
 		<!-- Use MySQL Connector-J -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.33</version>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
 		</dependency>
 
 		<dependency>
