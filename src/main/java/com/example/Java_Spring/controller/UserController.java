@@ -11,31 +11,16 @@ import com.example.Java_Spring.service.UserService;
 @Controller
 public class UserController {
 
+    private UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @RequestMapping("/")
     public String getHomePage() {
-        return "home.html";
+        String test = this.userService.handleHello();
+        return "Home";
     }
 
 }
-
-// => RESTful API: Sửa được lỗi MVC khi không có view
-// @RestController
-// public class UserController {
-    
-//     /*
-//         @Autowired: cái này để không cần generate contructor,
-//         nhưng mà không nên dùng
-//     */
-//     // => Đây chính là dependency injection
-//     private UserService userService;
-    
-//     public UserController(UserService userService) {
-//         this.userService = userService;
-//     }
-
-//     @GetMapping("/")
-//     public String getHomePage() {
-//         return this.userService.handleHello();
-//     }
-
-// }
