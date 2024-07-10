@@ -7,33 +7,35 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Java_Spring.service.UserService;
 
-// => MVC: Nó hơi lỗi
-// @Controller
-// public class UserController {
-    
-//     @RequestMapping("/")
-//     public String getHomePage() {
-//         return "Home Page from Controller";
-//     }
-
-// }
-// => RESTful API: Sửa được lỗi
-@RestController
+// => MVC: Nó hơi lỗi bởi vì ta chưa có view
+@Controller
 public class UserController {
-    
-    /*
-        @Autowired: cái này để không cần generate contructor,
-        nhưng mà không nên dùng
-    */ 
-    private UserService userService;
-    
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
-    @GetMapping("/")
+    @RequestMapping("/")
     public String getHomePage() {
-        return this.userService.handleHello();
+        return "home.html";
     }
 
 }
+
+// => RESTful API: Sửa được lỗi MVC khi không có view
+// @RestController
+// public class UserController {
+    
+//     /*
+//         @Autowired: cái này để không cần generate contructor,
+//         nhưng mà không nên dùng
+//     */
+//     // => Đây chính là dependency injection
+//     private UserService userService;
+    
+//     public UserController(UserService userService) {
+//         this.userService = userService;
+//     }
+
+//     @GetMapping("/")
+//     public String getHomePage() {
+//         return this.userService.handleHello();
+//     }
+
+// }
