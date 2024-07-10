@@ -26,4 +26,8 @@ public class UserController {
         return "Home";
     }
 
+    @RequestMapping("/admin/user")
+    public String createUserPage(Model model) {
+        return "Admin/User/Create";
+    }
 }
