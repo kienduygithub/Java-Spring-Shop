@@ -24,7 +24,7 @@ public class UserController {
 
     @RequestMapping("/")
     public String getHomePage(Model model) {
-        String test = this.userService.handleHello();
+        String tryService = this.userService.handleHello();
         model.addAttribute("kienduy", "Kiến Duy");
         return "Home";
     }
@@ -35,7 +35,7 @@ public class UserController {
         return "Admin/User/Create";
     }
 
-    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/user/handle-create", method = RequestMethod.POST)
     public String createUser(Model model, @ModelAttribute("newUser") User user) {
         System.out.println("Run here: " + user.toString());
         return "Home";
