@@ -41,7 +41,7 @@
                                 <td class="align-middle">${user.email}</td>
                                 <td class="align-middle">${user.fullName}</td>
                                 <td class="d-flex align-items-center gap-2">
-                                    <button class="btn btn-success ">View</button>
+                                    <a href="/admin/user/${user.id}" class="btn btn-success">View</a>
                                     <button class="btn btn-warning text-white">Update</button>
                                     <button class="btn btn-danger">Delete</button>
                                 </td>
