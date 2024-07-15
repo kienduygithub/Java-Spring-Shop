@@ -1,5 +1,6 @@
 package com.example.Java_Spring.controller;
 
+import java.net.Authenticator.RequestorType;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.Java_Spring.domain.User;
 import com.example.Java_Spring.repository.UserRepository;
 import com.example.Java_Spring.service.UserService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 // => MVC: Nó hơi lỗi bởi vì ta chưa có view
 @Controller
@@ -52,14 +56,34 @@ public class UserController {
     }
 
     @RequestMapping(value = "/admin/user/create")
-    public String createUserPage(Model model) {
+    public String getCreateUserPage(Model model) {
         model.addAttribute("newUser", new User());
         return "Admin/User/Create";
     }
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String createUser(Model model, @ModelAttribute("newUser") User user) {
+    public String handleCreateUser(Model model, @ModelAttribute("newUser") User user) {
         this.userService.handleSaveUser(user);
+        return "redirect:/admin/user";
+    }
+
+    @RequestMapping(value = "/admin/user/update/{userId}")
+    public String getUpdateUserPage(Model model, @PathVariable long userId) {
+        User user = this.userService.getUserById(userId);
+        model.addAttribute("user", user);
+        model.addAttribute("id", userId);
+        return "Admin/User/Update";
+    }
+
+    @PostMapping("/admin/user/update")
+    public String handleUpdateUser(Model model, @ModelAttribute("user") User user) {
+        User currentUser = this.userService.getUserById(user.getId());
+        if (currentUser != null) {
+            currentUser.setPhone(user.getPhone());
+            currentUser.setAddress(user.getAddress());
+            currentUser.setFullName(user.getFullName());
+            this.userService.handleSaveUser(currentUser);
+        }
         return "redirect:/admin/user";
     }
 }

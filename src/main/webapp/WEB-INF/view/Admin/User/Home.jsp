@@ -42,7 +42,7 @@
                                 <td class="align-middle">${user.fullName}</td>
                                 <td class="d-flex align-items-center gap-2">
                                     <a href="/admin/user/${user.id}" class="btn btn-success">View</a>
-                                    <button class="btn btn-warning text-white">Update</button>
+                                    <a href="/admin/user/update/${user.id}" class="btn btn-warning text-white">Update</a>
                                     <button class="btn btn-danger">Delete</button>
                                 </td>
                             </tr>
