@@ -1,5 +1,7 @@
 package com.example.Java_Spring.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +27,10 @@ public class UserController {
 
     @RequestMapping("/")
     public String getHomePage(Model model) {
+        List<User> arrUsers = this.userService.getAllUsersByEmail("abc_1@gmail.com");
+        System.out.println(arrUsers);
+        User user = this.userService.getUserByEmailOrAddress("abc_1@gmail.com", "abc");
+        System.out.println(user);
         model.addAttribute("kienduy", "Kiến Duy");
         return "Home";
     }
