@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Java_Spring.domain.User;
+import com.example.Java_Spring.repository.UserRepository;
 import com.example.Java_Spring.service.UserService;
 
 // => MVC: Nó hơi lỗi bởi vì ta chưa có view
 @Controller
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -24,7 +25,6 @@ public class UserController {
 
     @RequestMapping("/")
     public String getHomePage(Model model) {
-        String tryService = this.userService.handleHello();
         model.addAttribute("kienduy", "Kiến Duy");
         return "Home";
     }
@@ -38,6 +38,7 @@ public class UserController {
     @RequestMapping(value = "/admin/user/handle-create", method = RequestMethod.POST)
     public String createUser(Model model, @ModelAttribute("newUser") User user) {
         System.out.println("Run here: " + user.toString());
+        this.userService.handleSaveUser(user);
         return "Home";
     }
 }
