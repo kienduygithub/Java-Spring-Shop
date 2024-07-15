@@ -37,4 +37,8 @@ public class UserService {
     public User getUserByEmailOrAddress(String email, String address) {
         return this.userRepository.findFirstByEmailOrAddress(email, address);
     }
+
+    public void deleteUserById(long id) {
+        this.userRepository.deleteById(id);
+    }
 }

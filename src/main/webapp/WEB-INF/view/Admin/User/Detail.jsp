@@ -34,7 +34,7 @@
                         <li class="list-group-item">Phone number: ${user.phone}</li>
                     </ul>
                 </div>
-                <a href="/admin/user" class="btn btn-success mt-2">Back</a>
+                <a href="/admin/user" class="btn btn-success mt-2">BACK</a>
             </div>
         </div>
     </div>
