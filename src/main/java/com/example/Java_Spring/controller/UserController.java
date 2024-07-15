@@ -45,8 +45,9 @@ public class UserController {
 
     @RequestMapping(value = "/admin/user/{userId}")
     public String getUserDetailPage(Model model, @PathVariable long userId) {
-        System.out.println(">>> Check path id = " + userId);
+        User user = this.userService.getUserById(userId);
         model.addAttribute("id", userId);
+        model.addAttribute("user", user);
         return "Admin/User/Detail";
     }
 
