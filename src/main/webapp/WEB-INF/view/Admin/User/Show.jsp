@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
     <meta name="author" content="Hỏi Dân IT" />
-    <title>Create Users (Admin)</title>
+    <title>Dashboard - Hỏi Dân IT</title>
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Latest compiled and minified CSS -->
@@ -37,27 +37,41 @@
                         </li>
                     </ol>
                     <div>
-                        <div class="row">
+                        <div class="row mt-5">
+                            <div class="form-group d-flex justify-content-between">
+                                <h3 class="m-0">Table users</h3>
+                                <a href="/admin/user/create" class="btn btn-primary fw-bold">CREATE A USER</a>
+                            </div>
                             <div class="form-group">
-                                <h3>User details with id = ${id}</h3>
                                 <hr/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group">
-                                <div class="card" style="width: 60%;">
-                                    <div class="card-header">
-                                        User information
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">ID: ${user.id}</li>
-                                        <li class="list-group-item">Email: ${user.email}</li>
-                                        <li class="list-group-item">FullName: ${user.fullName}</li>
-                                        <li class="list-group-item">Address: ${user.address}</li>
-                                        <li class="list-group-item">Phone number: ${user.phone}</li>
-                                    </ul>
-                                </div>
-                                <a href="/admin/user" class="btn btn-success mt-2">BACK</a>
+                                <table class="table table-bordered table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-1">ID</th>
+                                            <th class="col-3">Email</th>
+                                            <th class="col-3">Full Name</th>
+                                            <th class="col-5">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="user" items="${users}">
+                                            <tr>
+                                                <th class="align-middle">${user.id}</th>
+                                                <td class="align-middle">${user.email}</td>
+                                                <td class="align-middle">${user.fullName}</td>
+                                                <td class="d-flex align-items-center gap-2">
+                                                    <a href="/admin/user/${user.id}" class="btn btn-success">View</a>
+                                                    <a href="/admin/user/update/${user.id}" class="btn btn-warning text-white">Update</a>
+                                                    <a href="/admin/user/delete/${user.id}" class="btn btn-danger">Delete</a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

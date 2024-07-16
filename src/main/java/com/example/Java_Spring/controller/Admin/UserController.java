@@ -1,4 +1,4 @@
-package com.example.Java_Spring.controller;
+package com.example.Java_Spring.controller.Admin;
 
 import java.net.Authenticator.RequestorType;
 import java.util.List;
@@ -44,7 +44,7 @@ public class UserController {
     public String getAdminUserPage(Model model) {
         List<User> users = this.userService.getAllUsers();
         model.addAttribute("users", users);
-        return "Admin/User/Home";
+        return "Admin/User/Show";
     }
 
     @RequestMapping(value = "/admin/user/{userId}")
