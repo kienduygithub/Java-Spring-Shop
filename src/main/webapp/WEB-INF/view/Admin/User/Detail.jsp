@@ -36,7 +36,7 @@
                             Users 
                         </li>
                     </ol>
-                    <div>
+                    <div class="mt-5">
                         <div class="row">
                             <div class="form-group">
                                 <h3>User details with id = ${id}</h3>

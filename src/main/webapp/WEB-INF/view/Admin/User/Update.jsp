@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
     <meta name="author" content="Hỏi Dân IT" />
-    <title>Create Users (Admin)</title>
+    <title>Update Users (Admin)</title>
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Latest compiled and minified CSS -->
@@ -36,7 +36,7 @@
                             Users 
                         </li>
                     </ol>
-                    <div>
+                    <div class="mt-5">
                         <form:form method="post" action="/admin/user/update"
                             modelAttribute="user"
                         >

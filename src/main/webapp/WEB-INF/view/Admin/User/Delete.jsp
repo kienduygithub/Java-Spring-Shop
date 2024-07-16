@@ -36,7 +36,7 @@
                             Users 
                         </li>
                     </ol>
-                    <div>
+                    <div class="mt-5">
                         <form:form method="post" action="/admin/user/delete"
                             modelAttribute="user"
                         >

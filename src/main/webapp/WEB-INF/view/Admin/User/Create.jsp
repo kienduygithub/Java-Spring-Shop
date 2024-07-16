@@ -36,7 +36,7 @@
                             Users 
                         </li>
                     </ol>
-                    <div>
+                    <div class="mt-5">
                         <form:form method="post" action="/admin/user/create"
                             modelAttribute="newUser"
                         >
@@ -46,43 +46,65 @@
                                     <hr />
                                 </div>
                             </div>
-                            <div class="row mb-lg-2">
-                                <div class="form-group col-12 col-lg-6 mb-2 mb-lg-0">
+                            <div class="row mb-2">
+                                <div class="form-group col-6">
                                     <label class="form-label">Email:</label>
                                     <form:input type="email" class="form-control"
                                         path="email"
                                     />
                                 </div>
-                                <div class="form-group col-12 col-lg-6 mb-2 mb-lg-0">
+                                <div class="form-group col-6">
                                     <label class="form-label">Password:</label>
                                     <form:input type="password" class="form-control"
                                         path="password"
                                     />
                                 </div>
                             </div>
-                            <div class="row mb-lg-2">
-                                <div class="form-group col-12 col-lg-6 mb-2 mb-lg-0">
+                            <div class="row mb-2">
+                                <div class="form-group col-6">
                                     <label class="form-label">Phone number:</label>
                                     <form:input type="text" class="form-control"
                                         path="phone"
                                     />
                                 </div>
-                                <div class="form-group col-12 col-lg-6 mb-2 mb-lg-0">
+                                <div class="form-group col-6">
                                     <label class="form-label">Full Name:</label>
                                     <form:input type="text" class="form-control"
                                         path="fullName"
                                     />
                                 </div>     
                             </div>
-                            <div class="row">
+                            <div class="row mb-2">
                                 <div class="form-group col-12">
                                     <label class="form-label">Address:</label>
                                     <form:input type="text" class="form-control"
                                         path="address"
                                     />
                                 </div>
-                                <div class="form-group col-12 mt-3">
-                                    <button class="btn btn-primary w-100" type="submit">CREATE</button>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="form-group col-6">
+                                    <label class="form-label">Role:</label>
+                                    <select class="form-select">
+                                        <option value="1">Admin</option>
+                                        <option value="2">Client</option>
+                                    <select>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="avatarFile" class="form-label">Avatar</label>
+                                    <input type="file" class="form-control"
+                                        id="avatarFile" accept=".png, .jpg, .jpeg"
+                                    >
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-12 col-md-6 mt-3">
+                                    <button class="btn btn-primary" type="submit">CREATE</button>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <img style="max-height: 250px; display: none;" alt="avatar preview"
+                                        id="avatarPreview"
+                                    />
                                 </div>
                             </div>
                         </form:form>
@@ -95,6 +117,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="/js/scripts.js"></script>
+    <script>
+        $(document).ready(() => {
+            const avatarFile = $("#avatarFile");
+            let avatarPreview = $("#avatarPreview");
+            let imgURL;
+            avatarFile.change((e) => {
+                imgURL = URL.createObjectURL(e.target.files[0]);
+                avatarPreview.attr("src", imgURL);
+                avatarPreview.css({"display" : "block"});
+            });
+        });
+    </script>
 </body>
 
 </html>
