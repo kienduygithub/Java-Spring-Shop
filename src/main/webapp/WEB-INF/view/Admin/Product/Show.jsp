@@ -46,9 +46,9 @@
                                     <thead>
                                         <tr>
                                             <th class="col-1">ID</th>
-                                            <th class="col-3">Email</th>
-                                            <th class="col-2">Full Name</th>
-                                            <th class="col-2">Role</th>
+                                            <th class="col-3">Name</th>
+                                            <th class="col-2">Price</th>
+                                            <th class="col-2">Factory</th>
                                             <th class="col-4">Action</th>
                                         </tr>
                                     </thead>

@@ -11,6 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +30,7 @@ import com.example.Java_Spring.service.UploadService;
 import com.example.Java_Spring.service.UserService;
 
 import jakarta.servlet.ServletContext;
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -69,13 +72,26 @@ public class UserController {
     }
 
     @PostMapping(value = "/admin/user/create")
-    public String handleCreateUser(Model model, @ModelAttribute("newUser") User user, @RequestParam("avatarFile") MultipartFile file) {
+    public String handleCreateUser(
+        Model model,
+        @Valid @ModelAttribute("newUser") User user,
+        BindingResult bindingResult,
+        @RequestParam("avatarFile") MultipartFile file
+    ) 
+    {
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
+        
+        // Validate
+        List<FieldError> errors = bindingResult.getFieldErrors();
+        for (FieldError error : errors) {
+            System.out.println(">>> " + error.getObjectName() + " - " + error.getDefaultMessage());
+        }
+        // After Validate
         user.setPassword(hashPassword);
         user.setAvatar(avatar);
         user.setRole(this.userService.getRoleByName(user.getRole().getName()));
-        this.userService.handleSaveUser(user);
+        // this.userService.handleSaveUser(user);
         return "redirect:/admin/user";
     }
 

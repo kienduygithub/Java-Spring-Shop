@@ -74,16 +74,25 @@
                                 <form:select class="form-select"
                                     path="factory"
                                 >
-                                    <form:option value="MACBOOK">MacBook</form:option>
+                                    <form:option value="APPLE">Apple (MacBook)</form:option>
+                                    <form:option value="ACER">Acer</form:option>
+                                    <form:option value="ASUS">Asus</form:option>
                                     <form:option value="DELL">Dell</form:option>
                                     <form:option value="LENOVO">Lenovo</form:option>
+                                    <form:option value="LG">LG</form:option>
                                 </form:select>
                             </div>
                             <div class="form-group col-4 mb-2">
                                 <label class="form-label">Target:</label>
-                                <form:input type="text" class="form-control" 
+                                <form:select class="form-select"
                                     path="target"
-                                />
+                                >
+                                    <form:option value="GAMING">Gaming</form:option>
+                                    <form:option value="SINHVIEN-VANPHONG">Sinh viên - Văn phòng</form:option>
+                                    <form:option value="THIET-KE-DO-HOA">Thiết kế đồ họa</form:option>
+                                    <form:option value="MONG-NHE">Mỏng nhẹ</form:option>
+                                    <form:option value="DOANH-NHAN">Doanh nhân</form:option>
+                                </form:select>
                             </div>
                             <div class="form-group col-6 mb-4">
                                 <label for="imgProductFile" class="form-label">Image:</label>

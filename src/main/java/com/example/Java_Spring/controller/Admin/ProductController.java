@@ -14,7 +14,7 @@ import com.example.Java_Spring.domain.Product;
 public class ProductController {
     
     @GetMapping(value = "/admin/product")
-    public String getDashboard() {
+    public String getProductPage() {
         return "Admin/Product/Show";
     }
 
