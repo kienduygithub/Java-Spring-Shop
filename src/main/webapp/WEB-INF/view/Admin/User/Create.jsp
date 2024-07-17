@@ -38,7 +38,7 @@
                     </ol>
                     <div class="mt-5">
                         <form:form method="post" action="/admin/user/create"
-                            modelAttribute="newUser"
+                            modelAttribute="newUser" enctype="multipart/form-data"
                         >
                             <div class="row">
                                 <div class="form-group col-12">
@@ -85,15 +85,16 @@
                             <div class="row mb-2">
                                 <div class="form-group col-6">
                                     <label class="form-label">Role:</label>
-                                    <select class="form-select">
-                                        <option value="1">Admin</option>
-                                        <option value="2">Client</option>
-                                    <select>
+                                    <form:select class="form-select" path="role.name">
+                                        <form:option value="ADMIN">Admin</form:option>
+                                        <form:option value="USER">User</form:option>
+                                    </form:select>
                                 </div>
                                 <div class="form-group col-6">
                                     <label for="avatarFile" class="form-label">Avatar</label>
                                     <input type="file" class="form-control"
                                         id="avatarFile" accept=".png, .jpg, .jpeg"
+                                        name="avatarFile"
                                     >
                                 </div>
                             </div>

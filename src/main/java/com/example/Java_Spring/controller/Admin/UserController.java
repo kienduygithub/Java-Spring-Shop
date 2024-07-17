@@ -1,5 +1,9 @@
 package com.example.Java_Spring.controller.Admin;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.Authenticator.RequestorType;
 import java.util.List;
 
@@ -10,12 +14,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.Java_Spring.domain.User;
 import com.example.Java_Spring.repository.UserRepository;
+import com.example.Java_Spring.service.UploadService;
 import com.example.Java_Spring.service.UserService;
+
+import jakarta.servlet.ServletContext;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -25,9 +35,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class UserController {
 
     private final UserService userService;
+    private final UploadService uploadService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UploadService uploadService) {
         this.userService = userService;
+        this.uploadService = uploadService;
     }
 
     @RequestMapping("/")
@@ -61,9 +73,10 @@ public class UserController {
         return "Admin/User/Create";
     }
 
-    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String handleCreateUser(Model model, @ModelAttribute("newUser") User user) {
-        this.userService.handleSaveUser(user);
+    @PostMapping(value = "/admin/user/create")
+    public String handleCreateUser(Model model, @ModelAttribute("newUser") User user, @RequestParam("avatarFile") MultipartFile file) {
+        String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+        System.out.println(">>> Debug filename: " + avatar);
         return "redirect:/admin/user";
     }
 
