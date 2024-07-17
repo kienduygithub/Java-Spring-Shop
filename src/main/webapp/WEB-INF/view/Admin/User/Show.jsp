@@ -53,8 +53,9 @@
                                         <tr>
                                             <th class="col-1">ID</th>
                                             <th class="col-3">Email</th>
-                                            <th class="col-3">Full Name</th>
-                                            <th class="col-5">Action</th>
+                                            <th class="col-2">Full Name</th>
+                                            <th class="col-2">Role</th>
+                                            <th class="col-4">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -63,6 +64,7 @@
                                                 <th class="align-middle">${user.id}</th>
                                                 <td class="align-middle">${user.email}</td>
                                                 <td class="align-middle">${user.fullName}</td>
+                                                <td class="align-middle">${user.role.name}</td>
                                                 <td class="d-flex align-items-center gap-2">
                                                     <a href="/admin/user/${user.id}" class="btn btn-success">View</a>
                                                     <a href="/admin/user/update/${user.id}" class="btn btn-warning text-white">Update</a>

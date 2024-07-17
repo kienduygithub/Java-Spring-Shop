@@ -75,12 +75,23 @@
                                 </div>     
                             </div>
                             <div class="row">
-                                <div class="form-group col-12">
+                                <div class="form-group col-12 mb-2">
                                     <label class="form-label">Address:</label>
                                     <form:input type="text" class="form-control"
                                         path="address"
                                     />
                                 </div>
+                                <div class="form-group col-12">
+                                    <label class="form-label">Role:</label>
+                                    <form:select class="form-select"
+                                        path="role.name"
+                                    >
+                                        <form:option value="ADMIN">Admin</form:option>
+                                        <form:option value="USER">User</form:option>
+                                    </form:select>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="form-group col-12 mt-3">
                                     <button class="btn btn-warning text-white w-100" type="submit">UPDATE</button>
                                     <a href="/admin/user" class="btn btn-success mt-3 w-100">BACK</a>

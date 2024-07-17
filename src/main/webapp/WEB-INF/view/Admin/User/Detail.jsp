@@ -55,6 +55,12 @@
                                         <li class="list-group-item">FullName: ${user.fullName}</li>
                                         <li class="list-group-item">Address: ${user.address}</li>
                                         <li class="list-group-item">Phone number: ${user.phone}</li>
+                                        <li class="list-group-item">Role: ${user.role.name}</li>
+                                        <li class="list-group-item">Avatar: 
+                                            <img src="/images/avatar/${user.avatar}" alt="avatar"
+                                                style="max-height: 250px;"
+                                            >
+                                        </li>
                                     </ul>
                                 </div>
                                 <a href="/admin/user" class="btn btn-success mt-2">BACK</a>
