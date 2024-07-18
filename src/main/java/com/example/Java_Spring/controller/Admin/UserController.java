@@ -94,7 +94,7 @@ public class UserController {
         user.setPassword(hashPassword);
         user.setAvatar(avatar);
         user.setRole(this.userService.getRoleByName(user.getRole().getName()));
-        // this.userService.handleSaveUser(user);
+        this.userService.handleSaveUser(user);
         return "redirect:/admin/user";
     }
 

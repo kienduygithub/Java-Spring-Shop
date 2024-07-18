@@ -8,6 +8,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "products")
@@ -15,14 +19,28 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @NotEmpty(message = "Tên sản phẩm không được để trống")
     private String name;
+
+    @Min(value = 1, message = "Giá trị phải lớn hơn 0")
     private double price;
+
+    @NotEmpty(message = "Chi tiết sản phẩm không được để trống")
     private String detailDesc;
+
+    @NotEmpty(message = "Chi tiết ngắn không được để trống")
     private String shortDesc;
+
+    @Min(value = 1, message = "Số lượng cần lớn hơn hoặc bằng 1")
     private long quantity;
+    
     private long sold;
     private String factory;
     private String target;
+    private String image;
+
+    
 
     public long getId() {
         return id;
@@ -75,14 +93,24 @@ public class Product {
     public String getTarget() {
         return target;
     }
+
     public void setTarget(String target) {
         this.target = target;
     }
+    
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+    
     @Override
     public String toString() {
         return "Product [id=" + id + ", name=" + name + ", price=" + price + ", detailDesc=" + detailDesc
                 + ", shortDesc=" + shortDesc + ", quantity=" + quantity + ", sold=" + sold + ", factory=" + factory
-                + ", target=" + target + "]";
+                + ", target=" + target + ", image=" + image + "]";
     }
-
+    
 }

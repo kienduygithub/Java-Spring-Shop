@@ -53,19 +53,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- <c:forEach var="user" items="${users}">
+                                        <c:forEach var="product" items="${products}">
                                             <tr>
-                                                <th class="align-middle">${user.id}</th>
-                                                <td class="align-middle">${user.email}</td>
-                                                <td class="align-middle">${user.fullName}</td>
-                                                <td class="align-middle">${user.role.name}</td>
+                                                <th class="align-middle">${product.id}</th>
+                                                <td class="align-middle">${product.name}</td>
+                                                <td class="align-middle">$${product.price}</td>
+                                                <td class="align-middle">${product.factory}</td>
                                                 <td class="d-flex align-items-center gap-2">
-                                                    <a href="/admin/user/${user.id}" class="btn btn-success">View</a>
-                                                    <a href="/admin/user/update/${user.id}" class="btn btn-warning text-white">Update</a>
-                                                    <a href="/admin/user/delete/${user.id}" class="btn btn-danger">Delete</a>
+                                                    <a href="/admin/user/${product.id}" class="btn btn-success">View</a>
+                                                    <a href="/admin/user/update/${product.id}" class="btn btn-warning text-white">Update</a>
+                                                    <a href="/admin/user/delete/${product.id}" class="btn btn-danger">Delete</a>
                                                 </td>
                                             </tr>
-                                        </c:forEach> -->
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
