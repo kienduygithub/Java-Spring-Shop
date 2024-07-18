@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -64,4 +65,63 @@ public class ProductController {
         return "redirect:/admin/product";
     }
 
+    @GetMapping(value = "/admin/product/delete/{id}")
+    public String getDeleteProductPage(Model model, @PathVariable("id") long id) {
+        System.out.println(">>> ID: " + id);
+        model.addAttribute("product", new Product());
+        model.addAttribute("id", id);
+        return "Admin/Product/Delete";
+    }
+
+    @PostMapping(value = "/admin/product/delete")
+    public String handleDeleteProduct(Model model, @ModelAttribute("product") Product product) {
+        this.productService.deleteProductById(product.getId());
+        return "redirect:/admin/product";
+    }
+
+    @GetMapping(value = "/admin/product/{id}")
+    public String getDetailProductPage(Model model, @PathVariable("id") long id) {
+        Product product = this.productService.findProductById(id);
+        model.addAttribute("id", id);
+        model.addAttribute("product", product);
+        return "Admin/Product/Detail";
+    }
+
+    @GetMapping(value = "/admin/product/update/{id}")
+    public String getUpdateProductPage(Model model, @PathVariable("id") long id) {
+        Product product = this.productService.findProductById(id);
+        model.addAttribute("product", product);
+        return "Admin/Product/Update";
+    }
+
+    @PostMapping(value = "/admin/product/update")
+    public String hanleUpdateProduct(
+        Model model, 
+        @RequestParam("imgProductFile") MultipartFile file,
+        @Valid @ModelAttribute("product") Product product,
+        BindingResult updateProductBindingResult
+    )
+    {
+        List<FieldError> errors = updateProductBindingResult.getFieldErrors();
+        for (FieldError error : errors) {
+            System.out.println(">>> " + error.getField() + " - " + error.getDefaultMessage());
+        }
+        if (updateProductBindingResult.hasErrors()) {
+            model.addAttribute("product", product);
+            return "Admin/Product/Update";
+        }
+        String finalNameFile = this.uploadService.handleSaveUploadFile(file, "product"); 
+        Product currentProduct = this.productService.findProductById(product.getId());
+        currentProduct.setName(product.getName());
+        currentProduct.setPrice(product.getPrice());
+        currentProduct.setDetailDesc(product.getDetailDesc());
+        currentProduct.setShortDesc(product.getShortDesc());
+        currentProduct.setQuantity(product.getQuantity());
+        currentProduct.setFactory(product.getFactory());
+        currentProduct.setTarget(product.getTarget());
+        if (!finalNameFile.equals(""))
+            currentProduct.setImage(finalNameFile);
+        this.productService.handleSaveProduct(currentProduct);
+        return "redirect:/admin/product";
+    }
 }

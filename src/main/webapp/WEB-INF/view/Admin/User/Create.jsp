@@ -33,8 +33,11 @@
                         <li class="breadcrumb-item">
                             <a href="/admin">Dashboard</a>  
                         </li>
+                        <li class="breadcrumb-item">
+                            <a href="/admin/user">Users</a> 
+                        </li>
                         <li class="breadcrumb-item active">
-                            Users 
+                            Create 
                         </li>
                     </ol>
                     <div class="mt-5">

@@ -24,16 +24,16 @@ public class User {
     private long id;
 
     @NotNull
-    @Email(message = "Email không hợp lệ", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[azA-Z0-9.-]+$")
+    @Email(message = "Email không hợp lệ", regexp = "^[A-Za-z0-9_-]+@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")
     // @NotEmpty(message = "Email không được bỏ trống")
     private String email;
 
     @NotNull
-    @Min(value = 2, message = "Mật khẩu phải có tối thiểu 2 ký tự")
+    @Size(min = 3, message = "Mật khẩu phải có tối thiểu 3 ký tự")
     private String password;
 
     @NotNull
-    @Min(value = 3, message = "Họ tên phải có tối thiểu 3 ký tự")
+    @Size(min = 3, max = 30, message = "Họ tên phải có tối thiểu 3 ký tự")
     private String fullName;
     private String address;
     private String phone;

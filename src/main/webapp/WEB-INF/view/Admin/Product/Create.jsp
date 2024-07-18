@@ -27,8 +27,11 @@
                         <li class="breadcrumb-item">
                             <a href="/admin">Dashboard</a>  
                         </li>
+                        <li class="breadcrumb-item">
+                            <a href="/admin/product">Products</a> 
+                        </li>
                         <li class="breadcrumb-item active">
-                            Products
+                            Create
                         </li>
                     </ol>
                     <form:form action="/admin/product/create" method="POST" enctype="multipart/form-data"
