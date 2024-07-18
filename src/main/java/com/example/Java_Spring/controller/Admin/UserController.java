@@ -75,7 +75,7 @@ public class UserController {
     public String handleCreateUser(
         Model model,
         @Valid @ModelAttribute("newUser") User user,
-        BindingResult bindingResult,
+        BindingResult newUserBindingResult,
         @RequestParam("avatarFile") MultipartFile file
     ) 
     {
@@ -83,9 +83,12 @@ public class UserController {
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
         
         // Validate
-        List<FieldError> errors = bindingResult.getFieldErrors();
+        List<FieldError> errors = newUserBindingResult.getFieldErrors();
         for (FieldError error : errors) {
-            System.out.println(">>> " + error.getObjectName() + " - " + error.getDefaultMessage());
+            System.out.println(">>> " + error.getField() + " - " + error.getDefaultMessage());
+        }
+        if (newUserBindingResult.hasErrors()) {
+            return "Admin/User/Create";
         }
         // After Validate
         user.setPassword(hashPassword);
