@@ -129,9 +129,8 @@
                                 />
                             </div>
                             <div class="form-group col-6 mb-4">
-                                <img style="max-height: 240px; width: 100%;"
+                                <img style="max-height: 240px; width: 100%; display: none;"
                                     alt="product preview" id="productPreview"
-                                    src="/images/product/${product.image}"
                                 />
                             </div>
                             <div class="form-group col-12">
@@ -153,7 +152,12 @@
             () => {
                 const imgProductFile = $("#imgProductFile");
                 let productPreview = $("#productPreview");
-                let imgURL;
+                let imgURL = "${product.image}";
+                if(imgURL){
+                    const urlImage = "/images/product/" + imgURL;
+                    productPreview.attr("src", urlImage);
+                    productPreview.css({"display" : "block"});
+                }
                 imgProductFile.change((e) => {
                     imgURL = URL.createObjectURL(e.target.files[0]);
                     productPreview.attr("src", imgURL);

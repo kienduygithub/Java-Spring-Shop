@@ -110,7 +110,6 @@ public class ProductController {
             model.addAttribute("product", product);
             return "Admin/Product/Update";
         }
-        String finalNameFile = this.uploadService.handleSaveUploadFile(file, "product"); 
         Product currentProduct = this.productService.findProductById(product.getId());
         currentProduct.setName(product.getName());
         currentProduct.setPrice(product.getPrice());
@@ -119,8 +118,10 @@ public class ProductController {
         currentProduct.setQuantity(product.getQuantity());
         currentProduct.setFactory(product.getFactory());
         currentProduct.setTarget(product.getTarget());
-        if (!finalNameFile.equals(""))
-            currentProduct.setImage(finalNameFile);
+        if (!file.isEmpty()) {
+            String img = this.uploadService.handleSaveUploadFile(file, "product");
+            currentProduct.setImage(img);
+        }
         this.productService.handleSaveProduct(currentProduct);
         return "redirect:/admin/product";
     }
