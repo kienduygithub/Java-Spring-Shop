@@ -2,6 +2,7 @@ package com.example.Java_Spring.domain;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,7 +27,9 @@ public class Product {
     @Min(value = 1, message = "Giá trị phải lớn hơn 0")
     private double price;
 
+    @NotNull
     @NotEmpty(message = "Chi tiết sản phẩm không được để trống")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String detailDesc;
 
     @NotEmpty(message = "Chi tiết ngắn không được để trống")
