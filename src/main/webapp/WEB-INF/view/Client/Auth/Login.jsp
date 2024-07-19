@@ -47,7 +47,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mt-2 mb-0">
+                                        <div class="row mb-3">
+                                            <div class="col-md-12" style="margin-left: 2px;">
+                                                <input type="checkbox" class="form-check-input" id="rememberPassword"/>
+                                                <label for="rememberPassword" class="form-check-label">Remember Password</label>
+                                            </div>
+                                        </div>
+                                        <div class="mb-0">
                                             <div class="d-grid">
                                                 <button class="btn btn-primary btn-block" type="submit">
                                                     LOGIN

@@ -11,12 +11,6 @@ import jakarta.validation.ConstraintValidatorContext;
 @Service
 public class RegisterValidator implements ConstraintValidator<RegisterChecked, RegisterDTO> {
 
-    private final UserService userService;
-
-    public RegisterValidator(UserService userService) {
-        this.userService = userService;
-    }
-
     @Override
     public boolean isValid(RegisterDTO user, ConstraintValidatorContext context) {
         boolean valid = true;
@@ -31,4 +25,5 @@ public class RegisterValidator implements ConstraintValidator<RegisterChecked, R
 
         return valid;
     }
+    
 }
