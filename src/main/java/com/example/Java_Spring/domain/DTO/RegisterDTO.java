@@ -1,5 +1,6 @@
 package com.example.Java_Spring.domain.DTO;
 
+import com.example.Java_Spring.service.validator.EmailChecked;
 import com.example.Java_Spring.service.validator.RegisterChecked;
 
 import jakarta.validation.constraints.Email;
@@ -10,7 +11,7 @@ public class RegisterDTO {
     private String firstName;
     private String lastName;
 
-    @Email(message = "Email không hợp lệ", regexp = "^[A-Za-z0-9_-]+@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")
+    @EmailChecked
     private String email;
     
     private String password;
