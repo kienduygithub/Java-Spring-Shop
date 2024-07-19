@@ -1,5 +1,8 @@
 package com.example.Java_Spring.domain.DTO;
 
+import com.example.Java_Spring.service.validator.RegisterChecked;
+
+@RegisterChecked
 public class RegisterDTO {
     private String firstName;
     private String lastName;
