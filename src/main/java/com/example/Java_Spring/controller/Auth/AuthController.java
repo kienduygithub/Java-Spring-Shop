@@ -43,11 +43,6 @@ public class AuthController {
         
         List<FieldError> errors = registerUserBindingResult.getFieldErrors();
 
-        System.out.println("=====================================");
-        for (FieldError error : errors) {
-            System.out.println(">>> " + error.getField() + " - " + error.getDefaultMessage());
-        }
-
         if (registerUserBindingResult.hasErrors())
             return "Client/Auth/Register";
         

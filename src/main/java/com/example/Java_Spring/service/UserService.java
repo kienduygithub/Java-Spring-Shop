@@ -51,13 +51,17 @@ public class UserService {
         return this.roleRepository.findByName(roleName);
     }
 
-    public User registerDTOtoUser(RegisterDTO registerDTO){
+    public User registerDTOtoUser(RegisterDTO registerDTO) {
         User user = new User();
 
         user.setFullName(registerDTO.getFirstName() + " " + registerDTO.getLastName());
         user.setEmail(registerDTO.getEmail());
         user.setPassword(registerDTO.getPassword());
-        
+
         return user;
+    }
+    
+    public boolean checkEmailExist(String email) {
+        return this.userRepository.existsByEmail(email);
     }
 }
