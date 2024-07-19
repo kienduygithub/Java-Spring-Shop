@@ -1,17 +1,28 @@
 package com.example.Java_Spring.controller.Auth;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.Java_Spring.domain.Role;
 import com.example.Java_Spring.domain.User;
 import com.example.Java_Spring.domain.DTO.RegisterDTO;
+import com.example.Java_Spring.service.UserService;
 
 @Controller
 public class AuthController {
     
+    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
+
+    public AuthController(UserService userService, PasswordEncoder passwordEncoder) {
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @GetMapping(value = "/register")
     public String getRegisterPage(Model model) {
         model.addAttribute("registerUser", new RegisterDTO());
@@ -20,7 +31,13 @@ public class AuthController {
 
     @PostMapping(value = "/register")
     public String handleRegister(@ModelAttribute("registerUser") RegisterDTO registerUser) {
-        System.out.println(">>> New user: " + registerUser);
+        User user = this.userService.registerDTOtoUser(registerUser);
+        String hashedPassword = this.passwordEncoder.encode(user.getPassword());
+        String roleName = "USER";
+        Role role = this.userService.getRoleByName(roleName);
+        user.setPassword(hashedPassword);
+        user.setRole(role);
+        this.userService.handleSaveUser(user);
         return "redirect:/login";
     }
 
