@@ -36,7 +36,7 @@ public class UserService {
     }
 
     public List<User> getAllUsersByEmail(String email) {
-        return this.userRepository.findByEmail(email);
+        return this.userRepository.findOneByEmail(email);
     }
 
     public User getUserByEmailOrAddress(String email, String address) {
@@ -63,5 +63,10 @@ public class UserService {
     
     public boolean checkEmailExist(String email) {
         return this.userRepository.existsByEmail(email);
+    }
+
+    // Dùng cho UserDetailsService của Spring Security
+    public User getUserByEmail(String email) {
+        return this.userRepository.findByEmail(email);
     }
 }
