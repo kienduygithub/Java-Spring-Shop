@@ -5,9 +5,12 @@ import com.example.Java_Spring.service.validator.RegisterChecked;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @RegisterChecked
 public class RegisterDTO {
+
+    @Size(min = 3, message = "FirstName phải có tối thiểu 3 ký tự")
     private String firstName;
     private String lastName;
 
